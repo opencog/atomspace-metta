@@ -1,0 +1,10 @@
+ENABLE_TESTING()
+INCLUDE(AddCxxtest)
+
+ADD_DEFINITIONS(-DPROJECT_SOURCE_DIR="${CMAKE_SOURCE_DIR}"
+                -DPROJECT_BINARY_DIR="${CMAKE_BINARY_DIR}")
+
+# The atom_types.h file is written to the build directory
+INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR})
+
+ADD_SUBDIRECTORY (atoms)
