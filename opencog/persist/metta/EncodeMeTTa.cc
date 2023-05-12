@@ -23,7 +23,7 @@
 
 #include <opencog/atoms/base/Link.h>
 #include <opencog/atoms/base/Node.h>
-#include <opencog/atoms/metta/types/atom_types.h>
+#include <opencog/atoms/metta-types/atom_types.h>
 
 #include "MeTTa.h"
 

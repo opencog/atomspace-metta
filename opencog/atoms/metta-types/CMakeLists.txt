@@ -30,7 +30,7 @@ ADD_GUILE_EXTENSION(SCM_CONFIG metta-types "opencog-ext-path-metta")
 
 INSTALL (FILES
 	${CMAKE_CURRENT_BINARY_DIR}/atom_types.h
-	DESTINATION "include/opencog/atoms/metta/types"
+	DESTINATION "include/opencog/atoms/metta-types"
 )
 
 INSTALL (FILES

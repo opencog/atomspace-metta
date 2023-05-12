@@ -24,7 +24,7 @@
 #define _OPENCOG_METTA_AST_H
 
 #include <opencog/atoms/foreign/SexprAST.h>
-#include <opencog/atoms/metta/types/atom_types.h>
+#include <opencog/atoms/metta-types/atom_types.h>
 
 namespace opencog
 {
