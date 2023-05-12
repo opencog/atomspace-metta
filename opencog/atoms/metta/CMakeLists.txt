@@ -7,9 +7,10 @@ ADD_LIBRARY (metta-as
 )
 
 # Without this, parallel make will race and crap up the generated files.
-# ADD_DEPENDENCIES(foreign opencog_atom_types)
+ADD_DEPENDENCIES(foreign metta_atom_types)
 
 TARGET_LINK_LIBRARIES(metta-as
+	metta-types
 	metta-io
 	atomspace
 )
