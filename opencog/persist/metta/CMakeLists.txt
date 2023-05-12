@@ -11,7 +11,7 @@ TARGET_LINK_LIBRARIES(metta-io
 	atomspace
 )
 
-INSTALL (TARGETS metta-as EXPORT AtomSpaceTargets
+INSTALL (TARGETS metta-io EXPORT AtomSpaceTargets
 	DESTINATION "lib${LIB_DIR_SUFFIX}/opencog"
 )
 

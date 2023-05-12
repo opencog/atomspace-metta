@@ -1,5 +1,5 @@
 /*
- * LispAST.cc
+ * MettaAST.cc
  *
  * Copyright (C) 2021, 2022 Linas Vepstas
  *
@@ -22,35 +22,35 @@
  */
 
 #include <opencog/persist/metta/MeTTa.h>
-#include "LispAST.h"
+#include "MettaAST.h"
 
 using namespace opencog;
 
-void LispAST::init()
+void MettaAST::init()
 {
-	if (not nameserver().isA(_type, LISP_AST))
+	if (not nameserver().isA(_type, METTA_AST))
 	{
 		const std::string& tname = nameserver().getTypeName(_type);
 		throw InvalidParamException(TRACE_INFO,
-			"Expecting an LispAST, got %s", tname.c_str());
+			"Expecting an MettaAST, got %s", tname.c_str());
 	}
 }
 
-LispAST::LispAST(const HandleSeq&& oset, Type t)
+MettaAST::MettaAST(const HandleSeq&& oset, Type t)
 	: SexprAST(std::move(oset), t)
 {
 	init();
 }
 
-LispAST::LispAST(const HandleSeq&& oset, const std::string&& sexpr)
-	: SexprAST(std::move(oset), LISP_AST)
+MettaAST::MettaAST(const HandleSeq&& oset, const std::string&& sexpr)
+	: SexprAST(std::move(oset), METTA_AST)
 {
 	init();
 	_name = sexpr;
 }
 
-LispAST::LispAST(const std::string& sexpr)
-	: SexprAST(LISP_AST)
+MettaAST::MettaAST(const std::string& sexpr)
+	: SexprAST(METTA_AST)
 {
 	SexprAST::parse(sexpr);
 
@@ -62,19 +62,19 @@ LispAST::LispAST(const std::string& sexpr)
 	}
 }
 
-Handle LispAST::next_expr(const std::string& expr, size_t& l, size_t& r)
+Handle MettaAST::next_expr(const std::string& expr, size_t& l, size_t& r)
 {
 	return MeTTa::next_expr(expr, l, r);
 }
 
 // ---------------------------------------------------------------
 
-std::string LispAST::to_string(const std::string& indent) const
+std::string MettaAST::to_string(const std::string& indent) const
 {
 	if (0 == _outgoing.size())
-		return indent + "(LispAst \"" + _name + "\") ; " + id_to_string();
+		return indent + "(MeTTa \"" + _name + "\") ; " + id_to_string();
 
-	std::string rv = indent + "(LispAst\n";
+	std::string rv = indent + "(MeTTa\n";
 	for (const Handle& h: _outgoing)
 		rv += h->to_string(indent + "  ") + "\n";
 
@@ -82,7 +82,7 @@ std::string LispAST::to_string(const std::string& indent) const
 	return rv;
 }
 
-std::string LispAST::to_short_string(const std::string& indent) const
+std::string MettaAST::to_short_string(const std::string& indent) const
 {
 	if (0 == indent.size())
 		return _name + "\n" + to_short_string(";") + "\n";
@@ -94,7 +94,7 @@ std::string LispAST::to_short_string(const std::string& indent) const
 	std::string rv = "";
 	for (const Handle& h: _outgoing)
 	{
-		if (LISP_AST == h->get_type())
+		if (METTA_AST == h->get_type())
 			rv += h->to_short_string("xx") + " ";
 		else
 			rv += indent + h->to_short_string(indent);
@@ -108,15 +108,15 @@ std::string LispAST::to_short_string(const std::string& indent) const
 // pass us a string, behaving like a node, which we parse into an
 // expression tree.
 
-Handle LispAST::factory(const Handle& base)
+Handle MettaAST::factory(const Handle& base)
 {
 	/* If it's castable, nothing to do. */
-	if (LispASTCast(base)) return base;
+	if (MettaASTCast(base)) return base;
 
 	if (0 == base->get_arity())
-		return HandleCast(createLispAST(std::move(base->get_name())));
+		return HandleCast(createMettaAST(std::move(base->get_name())));
 
-	return HandleCast(createLispAST(
+	return HandleCast(createMettaAST(
 		std::move(base->getOutgoingSet()),
 		std::move(MeTTa::prt_metta(base))));
 }
@@ -124,7 +124,7 @@ Handle LispAST::factory(const Handle& base)
 /* This runs when the shared lib is loaded. */
 static __attribute__ ((constructor)) void init_lispast_factory(void)
 {
-	classserver().addFactory(LISP_AST, &LispAST::factory);
+	classserver().addFactory(METTA_AST, &MettaAST::factory);
 }
 
 /* ===================== END OF FILE ===================== */

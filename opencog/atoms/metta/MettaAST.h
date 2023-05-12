@@ -1,5 +1,5 @@
 /*
- * opencog/atoms/metta/LispAST.h
+ * opencog/atoms/metta/MettaAST.h
  *
  * Copyright (C) 2021, 2022 Linas Vepstas
  * All Rights Reserved
@@ -20,8 +20,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#ifndef _OPENCOG_LISP_AST_H
-#define _OPENCOG_LISP_AST_H
+#ifndef _OPENCOG_METTA_AST_H
+#define _OPENCOG_METTA_AST_H
 
 #include <opencog/atoms/foreign/SexprAST.h>
 
@@ -31,11 +31,11 @@ namespace opencog
  *  @{
  */
 
-/// The LispAST holds Lisp-like, Scheme-like abstract syntax trees,
+/// The MettaAST holds MeTTa-like, Lisp-like abstract syntax trees,
 /// printed as Lisp-like s-expressions. Quasi-compatible with current
 /// experimental MeTTa code.
 ///
-class LispAST : public SexprAST
+class MettaAST : public SexprAST
 {
 	void init();
 	static std::string prt_metta(const Handle&);
@@ -44,12 +44,12 @@ protected:
 	virtual Handle next_expr(const std::string&, size_t& l, size_t& r);
 
 public:
-	LispAST(const HandleSeq&&, Type = LISP_AST);
-	LispAST(const HandleSeq&&, const std::string&&);
-	LispAST(const LispAST&) = delete;
-	LispAST& operator=(const LispAST&) = delete;
+	MettaAST(const HandleSeq&&, Type = METTA_AST);
+	MettaAST(const HandleSeq&&, const std::string&&);
+	MettaAST(const MettaAST&) = delete;
+	MettaAST& operator=(const MettaAST&) = delete;
 
-	LispAST(const std::string&);
+	MettaAST(const std::string&);
 
 	virtual std::string to_string(const std::string& indent) const;
 	virtual std::string to_short_string(const std::string& indent) const;
@@ -57,10 +57,10 @@ public:
 	static Handle factory(const Handle&);
 };
 
-LINK_PTR_DECL(LispAST)
-#define createLispAST CREATE_DECL(LispAST)
+LINK_PTR_DECL(MettaAST)
+#define createMettaAST CREATE_DECL(MettaAST)
 
 /** @}*/
 }
 
-#endif // _OPENCOG_LISP_AST_H
+#endif // _OPENCOG_METTA_AST_H
