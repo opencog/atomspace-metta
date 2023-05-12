@@ -16,9 +16,33 @@ The code "works"; see the
 [MeTTa example](./examples/metta-lisp.scm)
 for a working demo.
 
-Most of the rest of MeTTa can be implemented with the AtomSpace unifier.
-See the [opencog/unify git repo](https://github.com/opencog/unify)
-for that.
+### Architecture
+This code makes use of the "Foreign Abstract Syntax Tress"
+(`ForeignAST`) code in the base AtomSpace. This AST code also supports
+a proof-of-concept for DataLog. See
+https://github.com/opencog/atomspace/tree/master/opencog/atoms/foreign
+
+### TODO
+Implement `match`, `ground`, and multivalued propagation.
+
+* `match` takes some space, a pattern, and a template does two-sided
+  matching of the pattern on the space (i.e. unification) and fills
+  in the bindings in the template, and returns all results. So, like
+  `MeetLink` but it also unifies.  The unifier code in the
+  [opencog/unify git repo](https://github.com/opencog/unify)
+  can be used for that.
+
+* `ground` takes some Python/C/Rust function and binds it to a symbol
+  This is handled in the base AtomSpace, with the `lib:` wrapper.
+  It just needs to be exposed here.
+
+* Multivalued propagation means a function can return more than one
+  thing, and its arguments can be multi-valued too. It will expand that
+  appropriately.  So, for example,
+  `(= A x); (= A y); !(P A A)` returns
+  `{(P x x), (P x y), (P y x), (P y y)}`
+  Cartesian product.
+
 
 ### Prerequisites
 
