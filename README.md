@@ -17,7 +17,8 @@ The code "works"; see the
 for a working demo.
 
 Most of the rest of MeTTa can be implemented with the AtomSpace unifier.
-See the opencog/unify git repo for that.
+See the [opencog/unify git repo](https://github.com/opencog/unify)
+for that.
 
 ### Prerequisites
 
