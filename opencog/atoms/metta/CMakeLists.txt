@@ -1,23 +1,23 @@
 
-# Generic MeTTa encoding/decoding.
-ADD_LIBRARY(metta-as
-	DecodeMeTTa.cc
-	EncodeMeTTa.cc
+# The atom_types.h file is written to the build directory
+INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_BINARY_DIR})
+
+ADD_LIBRARY (metta
+	LispAST.cc
 )
 
-# ADD_DEPENDENCIES(metta opencog_atom_types)
+# Without this, parallel make will race and crap up the generated files.
+# ADD_DEPENDENCIES(foreign opencog_atom_types)
 
-TARGET_LINK_LIBRARIES(metta-as
+TARGET_LINK_LIBRARIES(metta
 	atomspace
 )
 
-INSTALL (TARGETS metta-as EXPORT AtomSpaceTargets
+INSTALL (TARGETS foreign EXPORT AtomSpaceTargets
 	DESTINATION "lib${LIB_DIR_SUFFIX}/opencog"
 )
 
 INSTALL (FILES
-	MeTTa.h
+	LispAST.h
 	DESTINATION "include/opencog/atoms/metta"
 )
-
-# -------------------------------
