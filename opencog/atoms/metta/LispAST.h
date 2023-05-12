@@ -1,5 +1,5 @@
 /*
- * opencog/atoms/foreign/LispAST.h
+ * opencog/atoms/metta/LispAST.h
  *
  * Copyright (C) 2021, 2022 Linas Vepstas
  * All Rights Reserved
@@ -23,7 +23,7 @@
 #ifndef _OPENCOG_LISP_AST_H
 #define _OPENCOG_LISP_AST_H
 
-#include <opencog/atoms/metta/SexprAST.h>
+#include <opencog/atoms/foreign/SexprAST.h>
 
 namespace opencog
 {

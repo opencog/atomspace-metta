@@ -1,13 +1,13 @@
 
 # Generic MeTTa encoding/decoding.
-ADD_LIBRARY(metta-as
+ADD_LIBRARY(metta-io
 	DecodeMeTTa.cc
 	EncodeMeTTa.cc
 )
 
 # ADD_DEPENDENCIES(metta opencog_atom_types)
 
-TARGET_LINK_LIBRARIES(metta-as
+TARGET_LINK_LIBRARIES(metta-io
 	atomspace
 )
 
