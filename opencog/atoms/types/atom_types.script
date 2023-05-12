@@ -1,0 +1,4 @@
+// Custom Atom types for the MeTTa project
+
+// Storge for LISP-style, quasi-MeTTa-compatible expressions
+METTA <- SEXPR_AST "MeTTa"
