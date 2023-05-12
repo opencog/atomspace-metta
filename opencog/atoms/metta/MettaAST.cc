@@ -122,9 +122,19 @@ Handle MettaAST::factory(const Handle& base)
 }
 
 /* This runs when the shared lib is loaded. */
-static __attribute__ ((constructor)) void init_lispast_factory(void)
+static __attribute__ ((constructor)) void init_metta_ast_factory(void)
 {
 	classserver().addFactory(METTA_AST, &MettaAST::factory);
+}
+
+extern "C" {
+	void opencog_metta_init(void);
+};
+
+/* This is called by the scheme module */
+/* It causes all library ctors to run, including the above. */
+void opencog_metta_init(void)
+{
 }
 
 /* ===================== END OF FILE ===================== */

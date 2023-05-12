@@ -8,7 +8,7 @@
 
 ; Load the C library that calls the classserver to load the types.
 (load-extension
-   (string-append opencog-ext-path-metta "libmetta-types")
-   "metta_types_init")
+   (string-append opencog-ext-path-metta "libmetta-ast")
+   "opencog_metta_init")
 
 (load-from-path "opencog/metta/types/metta_types.scm")

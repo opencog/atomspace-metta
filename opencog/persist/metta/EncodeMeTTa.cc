@@ -23,6 +23,7 @@
 
 #include <opencog/atoms/base/Link.h>
 #include <opencog/atoms/base/Node.h>
+#include <opencog/atoms/metta/types/atom_types.h>
 
 #include "MeTTa.h"
 
@@ -44,8 +45,8 @@ std::string MeTTa::prt_metta(const Handle& h)
 		return "false ";
 
 	std::string rv = "(";
-	if (LISP_AST == t)
-		rv += "LispAst ";
+	if (METTA_AST == t)
+		rv += "MeTTa ";
 	else if (DEFINE_LINK == t)
 		rv += "= ";
 	else if (LAMBDA_LINK == t)
