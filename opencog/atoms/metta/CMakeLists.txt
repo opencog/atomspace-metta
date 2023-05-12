@@ -6,8 +6,12 @@ ADD_LIBRARY (metta-ast SHARED
 	MettaAST.cc
 )
 
+# The metta.scm opencog-ext-path-metta define is built
+# implcitly from this directory name. So we have to have this, here.
+ADD_GUILE_EXTENSION(SCM_CONFIG metta-ast "opencog-ext-path-metta")
+
 # Without this, parallel make will race and crap up the generated files.
-ADD_DEPENDENCIES(foreign metta_atom_types)
+ADD_DEPENDENCIES(metta-ast metta_atom_types)
 
 TARGET_LINK_LIBRARIES(metta-ast
 	metta-types

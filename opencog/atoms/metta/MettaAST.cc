@@ -129,12 +129,14 @@ static __attribute__ ((constructor)) void init_metta_ast_factory(void)
 
 extern "C" {
 	void opencog_metta_init(void);
+	void metta_types_init(void);
 };
 
 /* This is called by the scheme module */
 /* It causes all library ctors to run, including the above. */
 void opencog_metta_init(void)
 {
+	metta_types_init();
 }
 
 /* ===================== END OF FILE ===================== */
